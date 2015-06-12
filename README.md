@@ -1,7 +1,7 @@
-# Transport-Management-University-Corsework
+# Transport-Management-University-Coursework
 University Coursework: Transport Management Software
-
 CRUD application built using Java, Swing, Spring JDBC.
+
 
 ЗАДАНИЕ
 за проект по „Практикум Java”
