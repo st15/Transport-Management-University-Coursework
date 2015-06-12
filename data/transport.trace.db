@@ -1,0 +1,629 @@
+11-20 17:40:28 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE MODELS
+(
+	ID INT PRIMARY KEY AUTO[*] INCREMENT, 
+	MODEL VARCHAR(50) NOT NULL, 
+	LOAD_CAPACITY INT,
+	WIDTH INT,
+	HEIGHT INT,
+	LENGTH INT
+) "; expected "HASH, AUTO_INCREMENT, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE models
+(
+	id INT PRIMARY KEY AUTO INCREMENT, 
+	model VARCHAR(50) NOT NULL, 
+	load_capacity INT,
+	width INT,
+	height INT,
+	length INT
+) [42001-176]
+11-20 17:40:28 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE VEHICLES
+(
+	ID INT PRIMARY KEY AUTO[*] INCREMENT, 
+	REGISTRATION_NUMBER VARCHAR(10),
+	MODEL_ID INT,
+	FOREIGN KEY (MODEL_ID) REFERENCES MODELS(ID)
+) "; expected "HASH, AUTO_INCREMENT, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE vehicles
+(
+	id INT PRIMARY KEY AUTO INCREMENT, 
+	registration_number VARCHAR(10),
+	model_id INT,
+	FOREIGN KEY (model_id) REFERENCES models(id)
+) [42001-176]
+11-20 17:40:28 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE DRIVERS
+(
+	ID INT PRIMARY KEY AUTO[*] INCREMENT, 
+	FIRST_NAME VARCHAR(50) NOT NULL, 
+	LAST_NAME VARCHAR(50) NOT NULL, 
+	EGN BIGINT(10) NOT NULL UNIQUE,
+	VEHICLE_ID INT,
+	FOREIGN KEY (VEHICLE_ID) REFERENCES VEHICLES(ID)
+) "; expected "HASH, AUTO_INCREMENT, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE drivers
+(
+	id INT PRIMARY KEY AUTO INCREMENT, 
+	first_name VARCHAR(50) NOT NULL, 
+	last_name VARCHAR(50) NOT NULL, 
+	egn BIGINT(10) NOT NULL UNIQUE,
+	vehicle_id INT,
+	FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+) [42001-176]
+11-28 13:34:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERJPA" not found; SQL statement:
+SELECT ID FROM UserJPA WHERE ID <> ID [42102-176]
+11-28 13:56:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "LOADCAPACITY" not found; SQL statement:
+INSERT INTO Models (HEIGHT, LENGTH, LOADCAPACITY, MODEL, WIDTH) VALUES (?, ?, ?, ?, ?) [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.table.Table.getColumn(Table.java:637)
+	at org.h2.command.Parser.parseColumn(Parser.java:849)
+	at org.h2.command.Parser.parseColumnList(Parser.java:833)
+	at org.h2.command.Parser.parseInsert(Parser.java:1033)
+	at org.h2.command.Parser.parsePrepared(Parser.java:402)
+	at org.h2.command.Parser.parse(Parser.java:306)
+	at org.h2.command.Parser.parse(Parser.java:278)
+	at org.h2.command.Parser.prepareCommand(Parser.java:243)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:73)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:276)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.prepareStatement(DatabaseAccessor.java:1556)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.prepareStatement(DatabaseAccessor.java:1505)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseCall.prepareStatement(DatabaseCall.java:778)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.basicExecuteCall(DatabaseAccessor.java:619)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.executeCall(DatabaseAccessor.java:558)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.basicExecuteCall(AbstractSession.java:2002)
+	at org.eclipse.persistence.sessions.server.ClientSession.executeCall(ClientSession.java:298)
+	at org.eclipse.persistence.internal.queries.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:242)
+	at org.eclipse.persistence.internal.queries.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:228)
+	at org.eclipse.persistence.internal.queries.DatasourceCallQueryMechanism.insertObject(DatasourceCallQueryMechanism.java:377)
+	at org.eclipse.persistence.internal.queries.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:165)
+	at org.eclipse.persistence.internal.queries.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:180)
+	at org.eclipse.persistence.internal.queries.DatabaseQueryMechanism.insertObjectForWrite(DatabaseQueryMechanism.java:489)
+	at org.eclipse.persistence.queries.InsertObjectQuery.executeCommit(InsertObjectQuery.java:80)
+	at org.eclipse.persistence.queries.InsertObjectQuery.executeCommitWithChangeSet(InsertObjectQuery.java:90)
+	at org.eclipse.persistence.internal.queries.DatabaseQueryMechanism.executeWriteWithChangeSet(DatabaseQueryMechanism.java:301)
+	at org.eclipse.persistence.queries.WriteObjectQuery.executeDatabaseQuery(WriteObjectQuery.java:58)
+	at org.eclipse.persistence.queries.DatabaseQuery.execute(DatabaseQuery.java:899)
+	at org.eclipse.persistence.queries.DatabaseQuery.executeInUnitOfWork(DatabaseQuery.java:798)
+	at org.eclipse.persistence.queries.ObjectLevelModifyQuery.executeInUnitOfWorkObjectLevelModifyQuery(ObjectLevelModifyQuery.java:108)
+	at org.eclipse.persistence.queries.ObjectLevelModifyQuery.executeInUnitOfWork(ObjectLevelModifyQuery.java:85)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.internalExecuteQuery(UnitOfWorkImpl.java:2896)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:1804)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:1786)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:1737)
+	at org.eclipse.persistence.internal.sessions.CommitManager.commitNewObjectsForClassWithChangeSet(CommitManager.java:226)
+	at org.eclipse.persistence.internal.sessions.CommitManager.commitAllObjectsWithChangeSet(CommitManager.java:125)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.writeAllObjectsWithChangeSet(AbstractSession.java:4207)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.commitToDatabase(UnitOfWorkImpl.java:1441)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.commitToDatabaseWithChangeSet(UnitOfWorkImpl.java:1531)
+	at org.eclipse.persistence.internal.sessions.RepeatableWriteUnitOfWork.commitRootUnitOfWork(RepeatableWriteUnitOfWork.java:277)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.commitAndResume(UnitOfWorkImpl.java:1169)
+	at org.eclipse.persistence.internal.jpa.transaction.EntityTransactionImpl.commit(EntityTransactionImpl.java:132)
+	at com.trans.Main.insertModel(Main.java:43)
+	at com.trans.Main.main(Main.java:28)
+11-28 14:18:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "LOADCAPACITY" not found; SQL statement:
+INSERT INTO Models (HEIGHT, LENGTH, LOADCAPACITY, MODEL, WIDTH) VALUES (?, ?, ?, ?, ?) [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.table.Table.getColumn(Table.java:637)
+	at org.h2.command.Parser.parseColumn(Parser.java:849)
+	at org.h2.command.Parser.parseColumnList(Parser.java:833)
+	at org.h2.command.Parser.parseInsert(Parser.java:1033)
+	at org.h2.command.Parser.parsePrepared(Parser.java:402)
+	at org.h2.command.Parser.parse(Parser.java:306)
+	at org.h2.command.Parser.parse(Parser.java:278)
+	at org.h2.command.Parser.prepareCommand(Parser.java:243)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:73)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:276)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.prepareStatement(DatabaseAccessor.java:1556)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.prepareStatement(DatabaseAccessor.java:1505)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseCall.prepareStatement(DatabaseCall.java:778)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.basicExecuteCall(DatabaseAccessor.java:619)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.executeCall(DatabaseAccessor.java:558)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.basicExecuteCall(AbstractSession.java:2002)
+	at org.eclipse.persistence.sessions.server.ClientSession.executeCall(ClientSession.java:298)
+	at org.eclipse.persistence.internal.queries.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:242)
+	at org.eclipse.persistence.internal.queries.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:228)
+	at org.eclipse.persistence.internal.queries.DatasourceCallQueryMechanism.insertObject(DatasourceCallQueryMechanism.java:377)
+	at org.eclipse.persistence.internal.queries.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:165)
+	at org.eclipse.persistence.internal.queries.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:180)
+	at org.eclipse.persistence.internal.queries.DatabaseQueryMechanism.insertObjectForWrite(DatabaseQueryMechanism.java:489)
+	at org.eclipse.persistence.queries.InsertObjectQuery.executeCommit(InsertObjectQuery.java:80)
+	at org.eclipse.persistence.queries.InsertObjectQuery.executeCommitWithChangeSet(InsertObjectQuery.java:90)
+	at org.eclipse.persistence.internal.queries.DatabaseQueryMechanism.executeWriteWithChangeSet(DatabaseQueryMechanism.java:301)
+	at org.eclipse.persistence.queries.WriteObjectQuery.executeDatabaseQuery(WriteObjectQuery.java:58)
+	at org.eclipse.persistence.queries.DatabaseQuery.execute(DatabaseQuery.java:899)
+	at org.eclipse.persistence.queries.DatabaseQuery.executeInUnitOfWork(DatabaseQuery.java:798)
+	at org.eclipse.persistence.queries.ObjectLevelModifyQuery.executeInUnitOfWorkObjectLevelModifyQuery(ObjectLevelModifyQuery.java:108)
+	at org.eclipse.persistence.queries.ObjectLevelModifyQuery.executeInUnitOfWork(ObjectLevelModifyQuery.java:85)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.internalExecuteQuery(UnitOfWorkImpl.java:2896)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:1804)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:1786)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:1737)
+	at org.eclipse.persistence.internal.sessions.CommitManager.commitNewObjectsForClassWithChangeSet(CommitManager.java:226)
+	at org.eclipse.persistence.internal.sessions.CommitManager.commitAllObjectsWithChangeSet(CommitManager.java:125)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.writeAllObjectsWithChangeSet(AbstractSession.java:4207)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.commitToDatabase(UnitOfWorkImpl.java:1441)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.commitToDatabaseWithChangeSet(UnitOfWorkImpl.java:1531)
+	at org.eclipse.persistence.internal.sessions.RepeatableWriteUnitOfWork.commitRootUnitOfWork(RepeatableWriteUnitOfWork.java:277)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.commitAndResume(UnitOfWorkImpl.java:1169)
+	at org.eclipse.persistence.internal.jpa.transaction.EntityTransactionImpl.commit(EntityTransactionImpl.java:132)
+	at com.trans.Main.insertModel(Main.java:43)
+	at com.trans.Main.main(Main.java:28)
+11-28 14:40:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "LOADCAPACITY" not found; SQL statement:
+INSERT INTO Models (HEIGHT, LENGTH, LOADCAPACITY, MODEL, WIDTH) VALUES (?, ?, ?, ?, ?) [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.table.Table.getColumn(Table.java:637)
+	at org.h2.command.Parser.parseColumn(Parser.java:849)
+	at org.h2.command.Parser.parseColumnList(Parser.java:833)
+	at org.h2.command.Parser.parseInsert(Parser.java:1033)
+	at org.h2.command.Parser.parsePrepared(Parser.java:402)
+	at org.h2.command.Parser.parse(Parser.java:306)
+	at org.h2.command.Parser.parse(Parser.java:278)
+	at org.h2.command.Parser.prepareCommand(Parser.java:243)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:73)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:276)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.prepareStatement(DatabaseAccessor.java:1556)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.prepareStatement(DatabaseAccessor.java:1505)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseCall.prepareStatement(DatabaseCall.java:778)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.basicExecuteCall(DatabaseAccessor.java:619)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.executeCall(DatabaseAccessor.java:558)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.basicExecuteCall(AbstractSession.java:2002)
+	at org.eclipse.persistence.sessions.server.ClientSession.executeCall(ClientSession.java:298)
+	at org.eclipse.persistence.internal.queries.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:242)
+	at org.eclipse.persistence.internal.queries.DatasourceCallQueryMechanism.executeCall(DatasourceCallQueryMechanism.java:228)
+	at org.eclipse.persistence.internal.queries.DatasourceCallQueryMechanism.insertObject(DatasourceCallQueryMechanism.java:377)
+	at org.eclipse.persistence.internal.queries.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:165)
+	at org.eclipse.persistence.internal.queries.StatementQueryMechanism.insertObject(StatementQueryMechanism.java:180)
+	at org.eclipse.persistence.internal.queries.DatabaseQueryMechanism.insertObjectForWrite(DatabaseQueryMechanism.java:489)
+	at org.eclipse.persistence.queries.InsertObjectQuery.executeCommit(InsertObjectQuery.java:80)
+	at org.eclipse.persistence.queries.InsertObjectQuery.executeCommitWithChangeSet(InsertObjectQuery.java:90)
+	at org.eclipse.persistence.internal.queries.DatabaseQueryMechanism.executeWriteWithChangeSet(DatabaseQueryMechanism.java:301)
+	at org.eclipse.persistence.queries.WriteObjectQuery.executeDatabaseQuery(WriteObjectQuery.java:58)
+	at org.eclipse.persistence.queries.DatabaseQuery.execute(DatabaseQuery.java:899)
+	at org.eclipse.persistence.queries.DatabaseQuery.executeInUnitOfWork(DatabaseQuery.java:798)
+	at org.eclipse.persistence.queries.ObjectLevelModifyQuery.executeInUnitOfWorkObjectLevelModifyQuery(ObjectLevelModifyQuery.java:108)
+	at org.eclipse.persistence.queries.ObjectLevelModifyQuery.executeInUnitOfWork(ObjectLevelModifyQuery.java:85)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.internalExecuteQuery(UnitOfWorkImpl.java:2896)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:1804)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:1786)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.executeQuery(AbstractSession.java:1737)
+	at org.eclipse.persistence.internal.sessions.CommitManager.commitNewObjectsForClassWithChangeSet(CommitManager.java:226)
+	at org.eclipse.persistence.internal.sessions.CommitManager.commitAllObjectsWithChangeSet(CommitManager.java:125)
+	at org.eclipse.persistence.internal.sessions.AbstractSession.writeAllObjectsWithChangeSet(AbstractSession.java:4207)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.commitToDatabase(UnitOfWorkImpl.java:1441)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.commitToDatabaseWithChangeSet(UnitOfWorkImpl.java:1531)
+	at org.eclipse.persistence.internal.sessions.RepeatableWriteUnitOfWork.commitRootUnitOfWork(RepeatableWriteUnitOfWork.java:277)
+	at org.eclipse.persistence.internal.sessions.UnitOfWorkImpl.commitAndResume(UnitOfWorkImpl.java:1169)
+	at org.eclipse.persistence.internal.jpa.transaction.EntityTransactionImpl.commit(EntityTransactionImpl.java:132)
+	at com.trans.Main.insertModel(Main.java:43)
+	at com.trans.Main.main(Main.java:28)
+12-06 03:12:06 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-176]
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:74)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:684)
+	at org.h2.server.web.WebApp.login(WebApp.java:958)
+	at org.h2.server.web.WebApp.process(WebApp.java:212)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:171)
+	at org.h2.server.web.WebThread.process(WebThread.java:138)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	... 14 more
+12-10 15:26:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE DRIVERS ADD COLUMN 'address'[*] VARCHAR(200) "; expected "identifier"; SQL statement:
+alter table drivers add column 'address' varchar(200) [42001-176]
+12-10 22:13:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE VEHICLES DROP PRIMARY KEY ,[*] ADD PRIMARY KEY (  REGISTRATION_NUMBER ) "; SQL statement:
+ALTER TABLE vehicles DROP PRIMARY KEY , ADD PRIMARY KEY (  registration_number ) [42000-176]
+12-10 22:17:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE VEHICLES MODIFY ID INT UNIQUE[*] "; SQL statement:
+ALTER TABLE vehicles MODIFY id INT UNIQUE [42000-176]
+12-10 22:22:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE VEHICLES ALTER COLUMN ID INT NOT NULL UNIQUE[*] "; SQL statement:
+ALTER TABLE vehicles ALTER COLUMN id INT NOT NULL UNIQUE [42000-176]
+12-10 22:24:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE VEHICLES
+(
+	ID INT NOT NULL PRIMARY KEY UNIQUE[*], 
+	REGISTRATION_NUMBER VARCHAR(10),
+	MODEL_ID INT,
+	FOREIGN KEY (MODEL_ID) REFERENCES MODELS(ID)
+) "; expected "HASH, AUTO_INCREMENT, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE vehicles
+(
+	id INT NOT NULL PRIMARY KEY UNIQUE, 
+	registration_number VARCHAR(10),
+	model_id INT,
+	FOREIGN KEY (model_id) REFERENCES models(id)
+) [42001-176]
+12-10 22:58:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO VEHICLES VEHICLES[*] (ID, REGISTRATION_NUMBER, MODEL_ID) VALUES (104, 'PB1234CA', 1) "; expected "., (, DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"; SQL statement:
+insert into VEHICLES vehicles (id, registration_number, model_id) values (104, 'PB1234CA', 1) [42001-176]
+12-11 16:54:23 jdbc[5]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-176]
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:74)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:684)
+	at org.h2.server.web.WebApp.login(WebApp.java:958)
+	at org.h2.server.web.WebApp.process(WebApp.java:212)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:171)
+	at org.h2.server.web.WebThread.process(WebThread.java:138)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	... 14 more
+12-11 16:54:32 database: close
+org.h2.message.DbException: IO Exception: "java.io.EOFException"; "C:/Development/workspace/TransSpring/data/transport.h2.db" [90031-176]
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.convertIOException(DbException.java:329)
+	at org.h2.store.FileStore.readFully(FileStore.java:276)
+	at org.h2.store.PageStore.readPage(PageStore.java:1326)
+	at org.h2.store.PageStore.getPage(PageStore.java:750)
+	at org.h2.store.PageStreamTrunk$Iterator.next(PageStreamTrunk.java:252)
+	at org.h2.store.PageLog.free(PageLog.java:214)
+	at org.h2.store.PageStore.compact(PageStore.java:499)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1301)
+	at org.h2.engine.Database.close(Database.java:1251)
+	at org.h2.engine.Database.removeSession(Database.java:1122)
+	at org.h2.engine.Session.close(Session.java:672)
+	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:383)
+	at org.h2.server.web.WebApp.logout(WebApp.java:984)
+	at org.h2.server.web.WebApp.process(WebApp.java:216)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:171)
+	at org.h2.server.web.WebThread.process(WebThread.java:138)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: IO Exception: "java.io.EOFException"; "C:/Development/workspace/TransSpring/data/transport.h2.db" [90031-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	... 19 more
+Caused by: java.io.EOFException
+	at org.h2.store.fs.FileUtils.readFully(FileUtils.java:347)
+	at org.h2.store.FileStore.readFully(FileStore.java:274)
+	... 16 more
+12-11 17:57:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE DRIVERS SET COLUMN[*] TOWN VARCHAR(50) "; expected "REFERENTIAL_INTEGRITY"; SQL statement:
+alter table drivers set column town varchar(50) [42001-176]
+12-11 19:22:12 database: close
+org.h2.message.DbException: IO Exception: "java.io.EOFException"; "C:/Development/workspace/TransSpring/data/transport.h2.db" [90031-176]
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.convertIOException(DbException.java:329)
+	at org.h2.store.FileStore.readFully(FileStore.java:276)
+	at org.h2.store.PageStore.readPage(PageStore.java:1326)
+	at org.h2.store.PageStore.getPage(PageStore.java:750)
+	at org.h2.store.PageStreamTrunk$Iterator.next(PageStreamTrunk.java:252)
+	at org.h2.store.PageLog.free(PageLog.java:214)
+	at org.h2.store.PageStore.compact(PageStore.java:624)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1301)
+	at org.h2.engine.Database.close(Database.java:1251)
+	at org.h2.engine.Database.removeSession(Database.java:1122)
+	at org.h2.engine.Session.close(Session.java:672)
+	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:383)
+	at org.h2.server.web.WebSession.close(WebSession.java:258)
+	at org.h2.server.web.WebServer.stop(WebServer.java:414)
+	at org.h2.tools.Server.stop(Server.java:542)
+	at org.h2.tools.Console.shutdown(Console.java:327)
+	at org.h2.tools.Console.actionPerformed(Console.java:550)
+	at java.awt.MenuItem.processActionEvent(Unknown Source)
+	at java.awt.MenuItem.processEvent(Unknown Source)
+	at java.awt.MenuComponent.dispatchEventImpl(Unknown Source)
+	at java.awt.MenuComponent.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$200(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: IO Exception: "java.io.EOFException"; "C:/Development/workspace/TransSpring/data/transport.h2.db" [90031-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	... 40 more
+Caused by: java.io.EOFException
+	at org.h2.store.fs.FileUtils.readFully(FileUtils.java:347)
+	at org.h2.store.FileStore.readFully(FileStore.java:274)
+	... 37 more
+12-11 21:23:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "CONSTRAINT_DF" not found; SQL statement:
+alter table drivers 
+drop constraint constraint_df [90057-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.command.ddl.AlterTableDropConstraint.update(AlterTableDropConstraint.java:42)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:79)
+	at org.h2.command.Command.executeUpdate(Command.java:254)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:186)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1391)
+	at org.h2.server.web.WebApp.query(WebApp.java:1064)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1026)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1013)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+12-11 21:26:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE DRIVERS 
+ADD CONSTRAINT CONSTRAINT_DF 
+FOREIGN KEY (VEHICLE_NUMBER) REFERENCES VEHICLES(VEHICLES.[*]VEHICLE_NUMBER) ON DELETE SET NULL ON UPDATE CASCADE "; expected "ASC, DESC, NULLS, ,, )"; SQL statement:
+alter table drivers 
+add constraint constraint_df 
+FOREIGN KEY (vehicle_number) REFERENCES vehicles(vehicles.vehicle_number) ON DELETE SET NULL ON UPDATE CASCADE [42001-176]
+12-11 21:26:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE DRIVERS 
+ADD CONSTRAINT CONSTRAINT_DF 
+FOREIGN KEY (DRIVERS.[*]VEHICLE_NUMBER) REFERENCES VEHICLES(VEHICLES.VEHICLE_NUMBER) ON DELETE SET NULL ON UPDATE CASCADE "; expected "ASC, DESC, NULLS, ,, )"; SQL statement:
+alter table drivers 
+add constraint constraint_df 
+FOREIGN KEY (drivers.vehicle_number) REFERENCES vehicles(vehicles.vehicle_number) ON DELETE SET NULL ON UPDATE CASCADE [42001-176]
+12-11 21:32:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "vehicle_id" not found [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3122)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3210)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:340)
+	at com.trans.dao.DriverDao$DriverMapper.mapRow(DriverDao.java:106)
+	at com.trans.dao.DriverDao$DriverMapper.mapRow(DriverDao.java:1)
+	at org.springframework.jdbc.core.RowMapperResultSetExtractor.extractData(RowMapperResultSetExtractor.java:93)
+	at org.springframework.jdbc.core.RowMapperResultSetExtractor.extractData(RowMapperResultSetExtractor.java:60)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:460)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:405)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:471)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:481)
+	at com.trans.dao.DriverDao.findAll(DriverDao.java:32)
+	at com.trans.ui.tabs.DriverTab.refreshTable(DriverTab.java:184)
+	at com.trans.ui.tabs.DriverTab.<init>(DriverTab.java:71)
+	at com.trans.ui.MainFrame.addComponents(MainFrame.java:62)
+	at com.trans.ui.MainFrame.<init>(MainFrame.java:52)
+	at com.trans.Main.run(Main.java:27)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$200(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+12-11 21:34:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO drivers (first_name, last_name, egn, vehicle_number, town, address) VALUES (?, ?, ?, ?, ?) [21002-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.command.dml.Insert.prepare(Insert.java:266)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:73)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:276)
+	at org.springframework.jdbc.core.JdbcTemplate$SimplePreparedStatementCreator.createPreparedStatement(JdbcTemplate.java:1557)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:638)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:909)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:970)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:980)
+	at com.trans.dao.DriverDao.create(DriverDao.java:48)
+	at com.trans.ui.tabs.DriverTab$SaveActionListener.actionPerformed(DriverTab.java:259)
+	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.setPressed(Unknown Source)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(Unknown Source)
+	at java.awt.Component.processMouseEvent(Unknown Source)
+	at javax.swing.JComponent.processMouseEvent(Unknown Source)
+	at java.awt.Component.processEvent(Unknown Source)
+	at java.awt.Container.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Window.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$200(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+12-11 21:34:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "NUMBER" not found; SQL statement:
+ALTER TABLE drivers 
+ADD CONSTRAINT constraint_df 
+FOREIGN KEY (vehicle_number) REFERENCES vehicles(number) ON DELETE SET NULL ON UPDATE CASCADE [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.table.Table.getColumn(Table.java:637)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:75)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:213)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:73)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:79)
+	at org.h2.command.Command.executeUpdate(Command.java:254)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:186)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1391)
+	at org.h2.server.web.WebApp.query(WebApp.java:1064)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1026)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1013)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+12-11 21:36:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO drivers (first_name, last_name, egn, vehicle_number, town, address) VALUES (?, ?, ?, ?, ?) [21002-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.command.dml.Insert.prepare(Insert.java:266)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:73)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:276)
+	at org.springframework.jdbc.core.JdbcTemplate$SimplePreparedStatementCreator.createPreparedStatement(JdbcTemplate.java:1557)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:638)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:909)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:970)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:980)
+	at com.trans.dao.DriverDao.create(DriverDao.java:48)
+	at com.trans.ui.tabs.DriverTab$SaveActionListener.actionPerformed(DriverTab.java:259)
+	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.setPressed(Unknown Source)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(Unknown Source)
+	at java.awt.Component.processMouseEvent(Unknown Source)
+	at javax.swing.JComponent.processMouseEvent(Unknown Source)
+	at java.awt.Component.processEvent(Unknown Source)
+	at java.awt.Container.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Window.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$200(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+12-12 17:44:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO drivers (first_name, last_name, egn, vehicle_number, town, address) VALUES (?, ?, ?, ?, ?) [21002-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.command.dml.Insert.prepare(Insert.java:266)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:73)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:276)
+	at org.springframework.jdbc.core.JdbcTemplate$SimplePreparedStatementCreator.createPreparedStatement(JdbcTemplate.java:1557)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:638)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:909)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:970)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:980)
+	at com.trans.dao.DriverDao.create(DriverDao.java:48)
+	at com.trans.ui.tabs.DriverTab$SaveActionListener.actionPerformed(DriverTab.java:254)
+	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.setPressed(Unknown Source)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(Unknown Source)
+	at java.awt.Component.processMouseEvent(Unknown Source)
+	at javax.swing.JComponent.processMouseEvent(Unknown Source)
+	at java.awt.Component.processEvent(Unknown Source)
+	at java.awt.Container.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Window.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$200(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
