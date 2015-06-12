@@ -23,19 +23,19 @@ public class Main implements Runnable {
 	
 	@Override
 	public void run() {
-
-	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
-	    dataSource.setDriverClassName(DatabaseConfiguration.getString("driver")); //$NON-NLS-1$
-	    dataSource.setUrl(DatabaseConfiguration.getString("url")); //$NON-NLS-1$
-	    dataSource.setUsername(DatabaseConfiguration.getString("username")); //$NON-NLS-1$
-	    dataSource.setPassword(DatabaseConfiguration.getString("password")); //$NON-NLS-1$
-	    
-	    JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
+		
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName(DatabaseConfiguration.getString("driver")); //$NON-NLS-1$
+		dataSource.setUrl(DatabaseConfiguration.getString("url")); //$NON-NLS-1$
+		dataSource.setUsername(DatabaseConfiguration.getString("username")); //$NON-NLS-1$
+		dataSource.setPassword(DatabaseConfiguration.getString("password")); //$NON-NLS-1$
+		    
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
 		DriverDao driverDao = new DriverDao();
-	    driverDao.setJdbcTemplate(jdbcTemplate);
-	    
-	    VehicleModelDao vehicleDao = new VehicleModelDao();
+		driverDao.setJdbcTemplate(jdbcTemplate);
+		
+		VehicleModelDao vehicleDao = new VehicleModelDao();
 		vehicleDao.setJdbcTemplate(jdbcTemplate);
 		
 		ModelDao modelDao = new ModelDao();
